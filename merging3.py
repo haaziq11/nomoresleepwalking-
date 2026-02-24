@@ -312,7 +312,7 @@ def main():
             clock.tick(60)
 
     except KeyboardInterrupt:
-        print("\nInterrupted by user...")
+        print("\nPROGRAM INTERRUPTED.")
         reset_hardware()
         pygame.quit()
         sys.exit()
