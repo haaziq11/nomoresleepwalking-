@@ -201,10 +201,12 @@ def main():
             #this stuff is outside the earlier comparison statements because it needs to be done all the time regardless of the mouse being pressed or not
             #outside of the app state logic we need to figure out what to draw when
             if current_app_state == homepage:
-                # Play music once if not already playing
+                # play music once if not already playing (music doesn't work because of vnc viewer not being premium)
                 if not pygame.mixer.music.get_busy():
                     pygame.mixer.music.load('giveonHA.mp3')
+                    #music loops infinitely and starts at 10 seconds in to skip the intro part of the song
                     pygame.mixer.music.play(loops=-1, start=10.0)
+                    #lower the overall vol
                     pygame.mixer.music.set_volume(0.25)
                 
                 #homepage so draw the homescreen, we already have the position logic and the images loaded
