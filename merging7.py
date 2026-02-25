@@ -17,17 +17,6 @@ yellow_led = LED(16)
 green_led = LED(1)
 servo = Servo(8)
 
-# constants (window has how many entries in the buffer) (sample time for when the sensor should act every 0.1 sec)
-SAMPLE_TIME = 0.1
-window = 10
-PERSIST_DURATION = 3  # seconds
-
-# thresh (tune these!!!)
-GYRO_LOW = 2
-GYRO_MED = 200
-ACCEL_LOW = 0.7
-ACCEL_MED = 5
-
 # helper functions
 def update_buffer_rolling_avg(buffer, new_val):
     #basically to make a rolling window
@@ -46,7 +35,7 @@ def update_buffer_rolling_avg(buffer, new_val):
             if val == 0:
                 is_all_zero += 1
         if is_all_zero == len(buffer[i]):
-        return buffer, None, None
+            return buffer, None, None
 
     #this is to calculate the average of the buffer
     # return the mean and a flag indicating it's valid
@@ -105,6 +94,17 @@ def reset_hardware():
     servo.detach()
     
 def main():
+    # constants (window has how many entries in the buffer) (sample time for when the sensor should act every 0.1 sec)
+    SAMPLE_TIME = 0.1
+    window = 10
+    PERSIST_DURATION = 3  # seconds
+
+    # thresh (tune these!!!)
+    GYRO_LOW = 2
+    GYRO_MED = 200
+    ACCEL_LOW = 0.7
+    ACCEL_MED = 5
+
     # pygame setup
     pygame.init()
     # mixer for music
