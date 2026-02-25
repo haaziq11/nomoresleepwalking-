@@ -46,7 +46,7 @@ def update_buffer_rolling_avg(buffer, new_val):
             if val == 0:
                 is_all_zero += 1
         if is_all_zero == len(buffer[i]):
-            return buffer, None, None
+        return buffer, None, None
 
     #this is to calculate the average of the buffer
     # return the mean and a flag indicating it's valid
@@ -235,8 +235,9 @@ def main():
                 # slicing to ignore Z-axis (gravity) bc it's always 9.8 when testing values
                 accel = np.array(sensor.accelerometer()[:2])
                 
-                if gyro == [0, 0, 0] or accel == [0, 0]:
+                if np.all(gyro == 0) or np.all(accel == 0):
                     print("Sensor Error. Reading all zeroes, skipping this reading.")
+                    time.sleep(SAMPLE_TIME)
                     continue
 
                 # update rolling lists with the new values
@@ -323,8 +324,8 @@ def main():
                     
                     #update display here to show data before sleeping
                     pygame.display.update()
-                    
-                    #timing
+                
+                #timing
                     time.sleep(SAMPLE_TIME)
     
                 
