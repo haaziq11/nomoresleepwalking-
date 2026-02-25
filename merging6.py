@@ -43,13 +43,13 @@ def update_buffer_rolling_avg(buffer, new_val):
     buffer[-1] = new_val
 
     # checking if all values in the first element of the buffer are exactly 0
-    is_init = False
+    is_all_zero = True
     for val in buffer[0]:
         if val != 0:
-            is_init = True
+            is_all_zero = False
             break
             
-    if not is_init:
+    if is_all_zero:
         return buffer, None
 
     #this is to calculate the average of the buffer
