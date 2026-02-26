@@ -67,20 +67,20 @@ def calculate_probability(mean_val, std_val, threshold):
     prob = 0.5 * (1 + math.erf(z / math.sqrt(2)))
     return prob * 100
 
-def update_hardware(color):
+def update_hardware(colour):
     
     red_led.off()
     green_led.off()
     yellow_led.off()
-    if color == "GREEN":
+    if colour == "GREEN":
         # NO LOCK POSITION
         green_led.on()
         servo.value=0.0
-    elif color == "YELLOW":
+    elif colour == "YELLOW":
         # PARTIAL LOCK
         yellow_led.on()
         servo.value=-0.25
-    elif color == "RED":
+    elif colour == "RED":
         # FULL LOCK
         red_led.on()
         servo.value=-0.5
@@ -298,13 +298,13 @@ def main():
                     #ok now that the logic is done display stuff for the active screen
                     #set background color based on hardwarestate (the actual CURRENT state after persistence not the sensor one)
                     if current_hardwarestate == "GREEN":
-                        bg_color = green
+                        bg_colour = green
                     elif current_hardwarestate == "YELLOW":
-                        bg_color = yellow
+                        bg_colour = yellow
                     else:
-                        bg_color = red
+                        bg_colour = red
                     #fill the screen with the color
-                    window_surface.fill(bg_color)
+                    window_surface.fill(bg_colour)
                     #draw the power off button in the corner already got the positions before and I explained it
                     window_surface.blit(image_off, imageoff_rect)
 
